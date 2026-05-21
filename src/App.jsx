@@ -1,9 +1,9 @@
-// import './App.css'
+import Home from "./pages/Home";
 
 const App = () => {
   return(
     <>
-      <h1 className='underline uppercase'>Hello</h1>
+    <Home />
     </>
   );
 }
