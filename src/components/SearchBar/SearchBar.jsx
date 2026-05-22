@@ -17,7 +17,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
         className="max-w-sm border mx-auto p-2 flex justify-between rounded-full"
       >
         <input
-          placeholder="Search Role & Location •••"
+          placeholder="Search Role, Location, Company & Skills"
           type="search"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
