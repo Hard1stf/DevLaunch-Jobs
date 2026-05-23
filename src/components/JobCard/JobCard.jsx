@@ -1,7 +1,9 @@
-import { FaRegClock } from "react-icons/fa";
+import { FaRegClock, FaRegHeart, FaHeart } from "react-icons/fa";
 
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
+  const isSaved = savedJobs.includes(job.id);
+
   return (
     <>
       <div className="bg-slate-900 h-full flex flex-col items-start gap-4 hover:shadow-md hover:shadow-slate-700 transition-all duration-500 ease-in-out hover:-translate-y-2 rounded-2xl p-4 text-slate-400 border">
@@ -31,7 +33,14 @@ const JobCard = ({ job }) => {
             {job.skills.map((skill,index) => <span className="font-semibold text-md px-4 py-1 rounded-2xl bg-slate-800 text-white" key={index}>{skill}</span>)}
             </p>
           </div>
-        <button className="mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">Apply now</button>
+          <div className="h-full flex justify-center items-center gap-4">
+            <button className="w-full mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">Apply now</button>
+            <button 
+              onClick={() => toggleSaveJobs(job.id)}
+              className="w-fit mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">
+                {isSaved ? <FaHeart className="text-2xl"/> : <FaRegHeart className="text-2xl"/>}
+            </button>
+          </div>
         </div>
       </div>
     </>
