@@ -8,6 +8,13 @@ export const jobs = [
     salary: '₹15,000/month',
     skills: ['React', 'TailwindCSS', 'JavaScript'],
     posted: '2 days ago',
+    requirements: [
+      '1+ years of experience with React',
+      'Proficiency in TailwindCSS and JavaScript',
+      'Strong understanding of responsive design',
+    ],
+    description:
+      'We are looking for a talented Frontend Developer Intern to join our team. You will work on building responsive web applications using modern technologies.',
   },
   {
     id: 2,
@@ -18,6 +25,14 @@ export const jobs = [
     salary: '₹20,000/month',
     skills: ['React', 'CSS', 'Git'],
     posted: '1 week ago',
+    requirements: [
+      'Knowledge of React fundamentals',
+      'CSS styling expertise',
+      'Version control with Git',
+      'Basic understanding of component architecture',
+    ],
+    description:
+      'Join our development team as a React Developer Intern and gain hands-on experience building interactive user interfaces. You will collaborate with senior developers on real-world projects.',
   },
   {
     id: 3,
@@ -28,6 +43,14 @@ export const jobs = [
     salary: '₹6,00,000/year',
     skills: ['Node.js', 'React', 'MongoDB', 'JavaScript'],
     posted: '3 days ago',
+    requirements: [
+      '3+ years of full-stack development experience',
+      'Strong proficiency in Node.js and React',
+      'MongoDB database design expertise',
+      'REST API development and integration',
+    ],
+    description:
+      'CodeVibe is hiring a Full Stack Developer to build scalable web applications. You will own features from frontend to backend, working with modern JavaScript frameworks and databases.',
   },
   {
     id: 4,
@@ -38,6 +61,14 @@ export const jobs = [
     salary: '₹5,50,000/year',
     skills: ['Figma', 'Adobe XD', 'Prototyping', 'CSS'],
     posted: '5 days ago',
+    requirements: [
+      '5+ years of UI/UX design experience',
+      'Expertise in Figma and Adobe XD',
+      'Strong prototyping and wireframing skills',
+      'Understanding of CSS and web design principles',
+    ],
+    description:
+      'TechWave is seeking a talented UI/UX Designer to create beautiful and intuitive user experiences. You will collaborate with product and engineering teams to design innovative solutions.',
   },
   {
     id: 5,
@@ -48,6 +79,14 @@ export const jobs = [
     salary: '₹18,000/month',
     skills: ['Python', 'Django', 'PostgreSQL', 'REST APIs'],
     posted: '4 days ago',
+    requirements: [
+      'Knowledge of Python programming',
+      'Understanding of Django framework',
+      'SQL and PostgreSQL basics',
+      'RESTful API design concepts',
+    ],
+    description:
+      'DataSphere is looking for a Backend Developer Intern to develop robust server-side applications. You will learn backend best practices and work on data processing systems.',
   },
   {
     id: 6,
@@ -58,6 +97,14 @@ export const jobs = [
     salary: '₹7,50,000/year',
     skills: ['Docker', 'Kubernetes', 'AWS', 'Linux'],
     posted: '1 day ago',
+    requirements: [
+      '4+ years of DevOps experience',
+      'Advanced Docker and Kubernetes knowledge',
+      'AWS cloud services expertise',
+      'Linux system administration skills',
+    ],
+    description:
+      'ByteFlow is hiring a DevOps Engineer to build and maintain infrastructure. You will manage containerized applications, cloud deployments, and CI/CD pipelines.',
   },
   {
     id: 7,
@@ -68,6 +115,14 @@ export const jobs = [
     salary: '₹16,000/month',
     skills: ['React Native', 'JavaScript', 'Firebase'],
     posted: '3 days ago',
+    requirements: [
+      'Familiarity with React Native',
+      'Solid JavaScript fundamentals',
+      'Firebase integration experience',
+      'Understanding of mobile app development lifecycle',
+    ],
+    description:
+      'QuantumLeap is seeking a Mobile Developer Intern to build cross-platform mobile applications using React Native. You will work on real projects and grow your mobile development skills.',
   },
   {
     id: 8,
@@ -78,6 +133,14 @@ export const jobs = [
     salary: '₹4,80,000/year',
     skills: ['Selenium', 'Testing', 'Java', 'Automation'],
     posted: '6 days ago',
+    requirements: [
+      '3+ years of QA automation experience',
+      'Selenium expertise',
+      'Java programming knowledge',
+      'Test automation framework development',
+    ],
+    description:
+      'CloudNine is hiring a QA Engineer to ensure software quality. You will develop automated tests, identify bugs, and collaborate with development teams to improve product reliability.',
   },
   {
     id: 9,
@@ -88,6 +151,14 @@ export const jobs = [
     salary: '₹12,000/month',
     skills: ['Python', 'Pandas', 'SQL', 'Data Visualization'],
     posted: '2 days ago',
+    requirements: [
+      'Basic Python programming skills',
+      'Pandas data manipulation experience',
+      'SQL query writing ability',
+      'Data visualization tools knowledge',
+    ],
+    description:
+      'GreenGrid is looking for a Data Analyst Intern to analyze and visualize data insights. You will work with datasets, create reports, and contribute to data-driven decision making.',
   },
   {
     id: 10,
@@ -98,5 +169,14 @@ export const jobs = [
     salary: '₹8,50,000/year',
     skills: ['Go', 'PostgreSQL', 'Docker', 'REST APIs'],
     posted: '1 week ago',
+    requirements: [
+      '3+ years of backend development experience',
+      'Go programming language expertise',
+      'PostgreSQL database knowledge',
+      'Docker containerization experience',
+      'Microservices architecture understanding',
+    ],
+    description:
+      'Arcadia Labs is seeking a Backend Developer to build scalable, high-performance systems. You will develop REST APIs, optimize databases, and work with cloud technologies.',
   },
 ];
