@@ -12,7 +12,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => {
         id=""
         name=""
         onSubmit={handleSubmit}
-        className="max-w-sm border mx-auto p-2 flex justify-between items-center rounded-full"
+        className="max-w-sm border mx-auto py-2 px-4 flex justify-between items-center rounded-full"
       >
         <ImSearch className="text-3xl"/>
         <input
