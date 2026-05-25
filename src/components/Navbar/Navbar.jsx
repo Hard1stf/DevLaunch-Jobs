@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
 import { HiAcademicCap } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,9 +16,9 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center gap-3 font-semibold">
-            <span className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>Home</span>
-            <span className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>Saved Job</span>
-            <span className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>GitHub</span>
+            <Link to={`/`} className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>Home</Link>
+            <Link to={`/saved-jobs`} className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>Saved Job</Link>
+            <Link to={`https://github.com/Hard1stf`} target='_blank' className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>GitHub</Link>
           </div>
 
           <div className="md:hidden flex gap-4 items-center">
@@ -32,9 +33,9 @@ const Navbar = () => {
         </div>
         {isMenuOpen && (
           <div className='md:hidden flex flex-col mt-4 gap-4 border-t border-slate-800 pt-4'>
-            <span className='cursor-pointer'>Home</span>
-            <span className='cursor-pointer'>Saved Job</span>
-            <span className='cursor-pointer'>GitHub</span>
+            <Link to={`/`} className='cursor-pointer'>Home</Link>
+            <Link to={`/saved-jobs`} className='cursor-pointer'>Saved Job</Link>
+            <Link to={`https://github.com/Hard1stf`} className='cursor-pointer'>GitHub</Link>
           </div>
         )}
       </nav>
