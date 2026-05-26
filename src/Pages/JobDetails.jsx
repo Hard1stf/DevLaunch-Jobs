@@ -1,16 +1,27 @@
 import { useParams } from 'react-router-dom';
 import { jobs } from '../data/jobs';
-import { IoTime, IoLocationSharp } from 'react-icons/io5';
+import {
+  IoTime,
+  IoLocationSharp,
+  IoBookmark,
+  IoBookmarkOutline,
+} from 'react-icons/io5';
 
-const JobDetails = () => {
+const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   const { id } = useParams();
 
   const job = jobs.find((job) => job.id === Number(id));
+  const isJobSaved = savedJobs.includes(job.id);
 
   return (
     <>
       <div className="w-full bg-black min-h-screen text-slate-100 flex justify-center">
-        <div className="w-1/3 h-fit mt-10 border-slate-700 border px-4 p-8 flex flex-col gap-4">
+        <div className="w-1/3 h-fit mt-10 relative border-slate-700 border px-4 p-8 flex flex-col gap-4">
+          <div className="w-fit absolute flex items-center justify-center top-10 right-5">
+            <button onClick={() => toggleSaveJobs(job.id)}>
+              {isJobSaved ? <IoBookmark className="text-3xl" /> : <IoBookmarkOutline className="text-3xl" />}
+            </button>
+          </div>
           {/* Head section */}
           <div className="flex flex-col gap-1 pb-8 border-b border-slate-700 text-slate-200 text-lg">
             <h1 className="font-bold uppercase text-4xl">{job.role}</h1>
@@ -37,10 +48,12 @@ const JobDetails = () => {
           </div>
           {/* Neck section */}
           <div className="flex flex-col gap-2 border-b pb-8 border-slate-700">
-            <span className='font-semibold'>{job.salary}</span>
-            <p className='flex flex-wrap gap-2'>
+            <span className="font-semibold">{job.salary}</span>
+            <p className="flex flex-wrap gap-2">
               {job.skills.map((skill) => (
-                <span className="border-2 font-semibold rounded-full py-2 px-4">{skill}</span>
+                <span className="border-2 font-semibold rounded-full py-2 px-4">
+                  {skill}
+                </span>
               ))}
             </p>
           </div>
@@ -58,8 +71,10 @@ const JobDetails = () => {
             </p>
           </div>
           {/* Lower Section */}
-          <div className='flex justify-center items-center gap-4'>
-            <button className="w-full mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">Apply now</button>
+          <div className="flex justify-center items-center gap-4">
+            <button className="w-full mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">
+              Apply now
+            </button>
           </div>
         </div>
       </div>
