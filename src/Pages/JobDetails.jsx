@@ -11,12 +11,24 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   const { id } = useParams();
 
   const job = jobs.find((job) => job.id === Number(id));
-  const isJobSaved = savedJobs.includes(job.id);
+  const isJobSaved = savedJobs.some(savedJob => savedJob.id === job.id)
+
+  if(!job){
+    return(
+      <>
+        <div className="bg-black min-h-screen flex justify-center items-center text-white">
+          <h1 className="text-3xl font-bold">
+            Job not found
+          </h1>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
       <div className="w-full bg-black min-h-screen text-slate-100 flex justify-center">
-        <div className="w-1/3 h-fit mt-10 relative border-slate-700 border px-4 p-8 flex flex-col gap-4">
+        <div className="w-full max-w-3xl h-fit mt-10 relative border-slate-700 border px-4 p-8 flex flex-col gap-4">
           <div className="w-fit absolute flex items-center justify-center top-10 right-5">
             <button onClick={() => toggleSaveJobs(job.id)}>
               {isJobSaved ? <IoBookmark className="text-3xl" /> : <IoBookmarkOutline className="text-3xl" />}
@@ -50,8 +62,8 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
           <div className="flex flex-col gap-2 border-b pb-8 border-slate-700">
             <span className="font-semibold">{job.salary}</span>
             <p className="flex flex-wrap gap-2">
-              {job.skills.map((skill) => (
-                <span className="border-2 font-semibold rounded-full py-2 px-4">
+              {job.skills.map((skill, idx) => (
+                <span key={idx} className="border-2 font-semibold rounded-full py-2 px-4">
                   {skill}
                 </span>
               ))}
@@ -60,11 +72,11 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
           {/* Body section */}
           <div className="group flex flex-col gap-2">
             <h2 className="font-semibold text-2xl">About the job</h2>
-            <p className="group-hover:border-l-2 pl-2">{job.description}</p>
+            <p className="border-transparent border-l-2 group-hover:border-slate-400 pl-2">{job.description}</p>
             <p className="ml-2 flex flex-col gap-2">
               <span className="font-semibold text-lg">Requirements:</span>
-              {job.requirements.map((req) => (
-                <span className="transition-all duration-150 px-2 hover:border-l-2">
+              {job.requirements.map((req, idx) => (
+                <span key={idx} className="border-transparent border-l-2 transition-all duration-300 px-2 hover:border-slate-400">
                   {req}
                 </span>
               ))}

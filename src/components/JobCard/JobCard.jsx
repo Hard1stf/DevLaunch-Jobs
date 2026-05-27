@@ -3,7 +3,7 @@ import { MdArrowOutward } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 
 const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
-  const isSaved = savedJobs.includes(job.id);
+  const isSaved = savedJobs.some(saveJob => saveJob.id === job.id);
 
   return (
     <>

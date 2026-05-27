@@ -13,12 +13,19 @@ const App = () => {
 
   // Toggling the save job based on there id (job.id).
     const toggleSaveJobs = (jobId) => {
-      if(savedJobs.includes(jobId)){
-        setSavedJobs(savedJobs.filter(id => id !== jobId));
+      const isSaved = savedJobs.some(job => job.id === jobId);
+      if(isSaved){
+        setSavedJobs(prev => prev.filter(job => job.id !== jobId))
       }else{
-        setSavedJobs([...savedJobs, jobId])
+        setSavedJobs(prev => [
+          ...prev,
+          {
+            id: jobId, 
+            savedAt: new Date().toString(),
+          }
+        ]);
       }
-    };
+      };
 
     // saving saved jobs in localstorage whenever savedJob changes.
     useEffect(() => {
@@ -31,7 +38,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Home savedJobs={savedJobs} toggleSaveJobs={toggleSaveJobs}/>}/>
       <Route path="/jobs/:id" element={<JobDetails savedJobs={savedJobs} toggleSaveJobs={toggleSaveJobs}/>}/>
-      <Route path="/saved-jobs" element={<SavedJobs />} />
+      <Route path="/saved-jobs" element={<SavedJobs savedJobs={savedJobs}/>} />
     </Routes>
     </BrowserRouter>
     </>
