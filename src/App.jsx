@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import JobDetails from "./pages/JobDetails";
 import SavedJobs from "./pages/SavedJobs";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
   const [savedJobs, setSavedJobs] = useState(() => {
@@ -39,6 +40,7 @@ const App = () => {
       <Route path="/" element={<Home savedJobs={savedJobs} toggleSaveJobs={toggleSaveJobs}/>}/>
       <Route path="/jobs/:id" element={<JobDetails savedJobs={savedJobs} toggleSaveJobs={toggleSaveJobs}/>}/>
       <Route path="/saved-jobs" element={<SavedJobs savedJobs={savedJobs}/>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
     </BrowserRouter>
     </>
