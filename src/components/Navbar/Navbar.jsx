@@ -8,8 +8,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="sticky z-50 top-0 max-w-7xl mx-auto px-4 py-4 border-2 bg-slate-950/80 border-slate-800 rounded-b-xl backdrop-blur text-yellow-50">
-        <div className="flex justify-between items-center">
+      <nav className="sticky z-50 top-0 w-full border-b px-4 py-4 bg-slate-950/80 border-slate-800 backdrop-blur">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex justify-center items-center rounded-full cursor-pointer">
             <HiAcademicCap className="text-white text-4xl rotate-12 transition-all duration-500 hover:rotate-0" />
           </div>
