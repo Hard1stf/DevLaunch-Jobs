@@ -17,7 +17,7 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-3 font-semibold">
             <Link to={`/`} className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>Home</Link>
             <Link to={`/saved-jobs`} className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>Saved Job</Link>
-            <Link to={`https://github.com/Hard1stf`} target='_blank' className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>GitHub</Link>
+            <a href={`https://github.com/Hard1stf`} target='_blank' rel="noopener noreferrer" className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>GitHub</a>
           </div>
 
           <div className="md:hidden flex gap-4 items-center">
@@ -34,7 +34,7 @@ const Navbar = () => {
           <div className='md:hidden flex flex-col mt-4 gap-4 border-t border-slate-800 pt-4'>
             <Link to={`/`} className='cursor-pointer'>Home</Link>
             <Link to={`/saved-jobs`} className='cursor-pointer'>Saved Job</Link>
-            <Link to={`https://github.com/Hard1stf`} target='_blank' rel='noreferrer' className='cursor-pointer'>GitHub</Link>
+            <a href={`https://github.com/Hard1stf`} target='_blank' rel="noopener noreferrer" className='cursor-pointer'>GitHub</a>
           </div>
         )}
       </nav>
