@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Filters from '../components/Filters/Filters';
 import Hero from '../components/Hero/Hero';
 import JobGrid from '../components/JobGrid/JobGrid';
-import Navbar from '../components/Navbar/Navbar';
 import SearchBar from '../components/SearchBar/SearchBar';
 import { jobs } from '../data/jobs';
+import Layout from '../components/layout/Layout';
 
 const Home = ({savedJobs, toggleSaveJobs}) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -22,13 +22,12 @@ const Home = ({savedJobs, toggleSaveJobs}) => {
 
   return (
     <>
-      <div className="bg-black min-h-screen text-slate-300">
-        <Navbar />
+      <Layout>
         <Hero />
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Filters selectedType={selectedType} setSelectedType={setSelectedType} />
         <JobGrid jobs={filteredJobs} savedJobs={savedJobs} toggleSaveJobs={toggleSaveJobs}/>
-      </div>
+      </Layout>
     </>
   );
 };
