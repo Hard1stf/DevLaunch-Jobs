@@ -8,7 +8,7 @@ const Footer = () => {
                 <p>
                     Build with React & Tailwind CSS
                 </p>
-                <span className="border-2 border-transparent font-semibold group-hover:border-pink-700 hover:bg-pink-700 text-white hover:text-white rounded-full px-4 py-2">
+                <span className="border-2 border-transparent font-semibold transition-all duration-500 group-hover:border-pink-700 hover:bg-pink-700 text-white hover:text-white rounded-full px-4 py-2">
                     <Link to={`/`} target="_blank" className="flex gap-2 items-center group-hover:text-white">
                         <LuFolderGit2 className="text-lg"/> <span>Repository</span>
                     </Link>
