@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { FaBars } from 'react-icons/fa';
-import { FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { HiAcademicCap } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 
@@ -35,7 +34,7 @@ const Navbar = () => {
           <div className='md:hidden flex flex-col mt-4 gap-4 border-t border-slate-800 pt-4'>
             <Link to={`/`} className='cursor-pointer'>Home</Link>
             <Link to={`/saved-jobs`} className='cursor-pointer'>Saved Job</Link>
-            <Link to={`https://github.com/Hard1stf`} className='cursor-pointer'>GitHub</Link>
+            <Link to={`https://github.com/Hard1stf`} target='_blank' rel='noreferrer' className='cursor-pointer'>GitHub</Link>
           </div>
         )}
       </nav>
