@@ -6,28 +6,33 @@ import {
   IoBookmark,
   IoBookmarkOutline,
 } from 'react-icons/io5';
+import Layout from '../components/layout/Layout';
 
 const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   const { id } = useParams();
 
   const job = jobs.find((job) => job.id === Number(id));
-  const isJobSaved = savedJobs.some(savedJob => savedJob.id === job.id)
-
+  
   if(!job){
     return(
       <>
-        <div className="bg-black min-h-screen flex justify-center items-center text-white">
+      <Layout>
+        <div className="flex justify-center items-center text-white">
           <h1 className="text-3xl font-bold">
             Job not found
           </h1>
         </div>
+      </Layout>
       </>
     );
   }
 
+  const isJobSaved = savedJobs.some(savedJob => savedJob.id === job.id)
+  
   return (
     <>
-      <div className="w-full bg-black min-h-screen text-slate-100 flex justify-center">
+    <Layout>
+      <section className="w-full flex justify-center px-4 py-10">
         <div className="w-full max-w-3xl h-fit mt-10 relative border-slate-700 border px-4 p-8 flex flex-col gap-4">
           <div className="w-fit absolute flex items-center justify-center top-10 right-5">
             <button onClick={() => toggleSaveJobs(job.id)}>
@@ -89,7 +94,8 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
             </button>
           </div>
         </div>
-      </div>
+      </section>
+    </Layout>
     </>
   );
 };
