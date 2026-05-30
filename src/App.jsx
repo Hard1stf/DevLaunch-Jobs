@@ -1,16 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useEffect, useState } from "react";
 import Home from "./pages/Home";
 import JobDetails from "./pages/JobDetails";
 import SavedJobs from "./pages/SavedJobs";
 import NotFound from "./pages/NotFound";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = () => {
-  const [savedJobs, setSavedJobs] = useState(() => {
-        const storedJobs = localStorage.getItem('savedJobs');
-  
-        return storedJobs ? JSON.parse(storedJobs) : [];
-  }); // implementing lazy initialization, this will run once during initial renders.
+  const [savedJobs, setSavedJobs] = useLocalStorage('savedJobs', []); 
 
   // Toggling the save job based on there id (job.id).
     const toggleSaveJobs = (jobId) => {
@@ -26,12 +22,9 @@ const App = () => {
           }
         ]);
       }
-      };
-
+    };
     // saving saved jobs in localstorage whenever savedJob changes.
-    useEffect(() => {
-      localStorage.setItem('savedJobs', JSON.stringify(savedJobs))
-    }, [savedJobs]);
+    ;
   
   return(
     <>
