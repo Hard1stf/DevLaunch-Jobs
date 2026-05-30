@@ -10,9 +10,9 @@ const Navbar = () => {
     <>
       <nav className="sticky z-50 top-0 w-full border-b px-4 py-4 bg-slate-950/80 border-slate-800 backdrop-blur">
         <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex justify-center items-center rounded-full cursor-pointer">
+          <Link to={`/`} className="flex justify-center items-center rounded-full cursor-pointer">
             <HiAcademicCap className="text-white text-4xl rotate-12 transition-all duration-500 hover:rotate-0" />
-          </div>
+          </Link>
 
           <div className="hidden md:flex items-center gap-3 font-semibold">
             <Link to={`/`} className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>Home</Link>
