@@ -1,6 +1,7 @@
 import { FaRegClock, FaRegHeart, FaHeart } from 'react-icons/fa';
 import { MdArrowOutward } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import Button from '../UI/Button';
 
 const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
   const isSaved = savedJobs.some(saveJob => saveJob.id === job.id);
@@ -47,19 +48,20 @@ const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
             </p>
           </div>
           <div className="h-full flex justify-center items-center gap-4">
-            <button className="w-full mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">
-              Apply now
-            </button>
-            <button
+            <Button className='w-full mt-auto' variant='secondary' >
+              Apply Now
+            </Button>
+            <Button 
               onClick={() => toggleSaveJobs(job.id)}
-              className="w-fit mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl"
+              className="w-fit mt-auto"
+              variant='secondary'
             >
               {isSaved ? (
                 <FaHeart className="text-2xl" />
               ) : (
                 <FaRegHeart className="text-2xl" />
               )}
-            </button>
+            </Button>
             <button className="w-fit mt-auto group bg-slate-400 px-3 py-2 rounded-2xl">
               <Link to={`/jobs/${job.id}`}>
                 <MdArrowOutward className="font-black text-slate-900 text-2xl transition-all duration-300 group-hover:translate-x-1"/>
