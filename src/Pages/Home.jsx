@@ -3,22 +3,16 @@ import Filters from '../components/Filters/Filters';
 import Hero from '../components/Hero/Hero';
 import JobGrid from '../components/JobGrid/JobGrid';
 import SearchBar from '../components/SearchBar/SearchBar';
-import { jobs } from '../data/jobs';
 import Layout from '../components/layout/Layout';
+import { filterJobs } from '../utils/filterJobs';
+import { jobs } from '../data/jobs';
 
 const Home = ({savedJobs, toggleSaveJobs}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedType, setSelectedType] = useState("All");
     
-    const filteredJobs = jobs.filter((job) => {
-        const matchesSearch = job.role.toLowerCase().includes(searchTerm.toLowerCase()) || 
-        job.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()));
-        const matchesType = selectedType === "All" || job.type === selectedType;
-
-        return matchesSearch && matchesType;
-    });
+    // passing jobs(jobs.js), searchTerm and selectedType to the filterJob.js utility function.
+    const filteredJobs = filterJobs(jobs, searchTerm, selectedType);
 
   return (
     <>
