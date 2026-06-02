@@ -30,7 +30,7 @@ const Button = ({
         disabled={disable}
         type={type}
         onClick={onClick}
-        className={`${baseStyles} ${variants[variant]} ${className} ${sizes[size]}`}
+        className={`${baseStyles} ${variants[variant] || variants.primary} ${className} ${sizes[size]}`}
       >
         {children}
       </button>
