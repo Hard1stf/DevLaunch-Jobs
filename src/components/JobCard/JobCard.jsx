@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Button from '../UI/Button';
 
 const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
-  const isSaved = savedJobs.some(saveJob => saveJob.id === job.id);
+  const isSaved = savedJobs.some((saveJob) => saveJob.id === job.id);
 
   return (
     <>
@@ -48,13 +48,13 @@ const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
             </p>
           </div>
           <div className="h-full flex justify-center items-center gap-4">
-            <Button className='w-full mt-auto' variant='secondary' >
+            <Button className="w-full mt-auto" variant="secondary">
               Apply Now
             </Button>
-            <Button 
+            <Button
               onClick={() => toggleSaveJobs(job.id)}
               className="w-fit mt-auto"
-              variant='secondary'
+              variant="secondary"
             >
               {isSaved ? (
                 <FaHeart className="text-2xl" />
@@ -62,11 +62,11 @@ const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
                 <FaRegHeart className="text-2xl" />
               )}
             </Button>
-            <button className="w-fit mt-auto group bg-slate-400 px-3 py-2 rounded-2xl">
-              <Link to={`/jobs/${job.id}`}>
-                <MdArrowOutward className="font-black text-slate-900 text-2xl transition-all duration-300 group-hover:translate-x-1"/>
-              </Link>
-            </button>
+            <Link to={`/jobs/${job.id}`} className='w-fit mt-auto'>
+              <Button className="group">
+                <MdArrowOutward className="font-black text-slate-900 text-2xl transition-all duration-300 group-hover:translate-x-1" />
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
