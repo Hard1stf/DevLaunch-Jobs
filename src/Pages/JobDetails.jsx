@@ -7,6 +7,7 @@ import {
   IoBookmarkOutline,
 } from 'react-icons/io5';
 import Layout from '../components/layout/Layout';
+import EmptyState from '../components/UI/EmptyState';
 
 const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   const { id } = useParams();
@@ -17,11 +18,10 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
     return(
       <>
       <Layout>
-        <div className="flex justify-center items-center text-white">
-          <h1 className="text-3xl font-bold">
-            Job not found
-          </h1>
-        </div>
+        <EmptyState 
+          title={"Job Not Found"} 
+          desc={"The job listing you requested does not exist or may have been removed."}
+        />
       </Layout>
       </>
     );

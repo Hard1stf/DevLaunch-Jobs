@@ -1,16 +1,15 @@
 import JobCard from '../JobCard/JobCard';
+import EmptyState from '../UI/EmptyState';
 
 const JobGrid = ({jobs, savedJobs, toggleSaveJobs }) => {
 
   if(jobs.length === 0){
     return(
       <>
-        <div className='text-center py-20 text-slate-400'>
-          <h2 className='text-3xl font-semibold'>No Job found</h2>
-          <p className='mt-2'>
-            Try adjusting your search and filter.
-          </p>
-        </div>
+        <EmptyState 
+          title={"No Job found"} 
+          desc={"We couldn't find any jobs matching your current search and filters."}
+        />
       </>
     );
   }
