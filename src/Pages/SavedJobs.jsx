@@ -4,9 +4,20 @@ import Layout from '../components/layout/Layout';
 import EmptyState from '../components/UI/EmptyState';
 
 const SavedJobs = ({ savedJobs }) => {
-  const savedJobData = jobs.filter((job) =>
-    savedJobs.some((savedJob) => savedJob.id === job.id),
-  );
+  // Clone the saved jobs array and sort it in descending order by savedAt date,
+  // so the most recently saved jobs appear first in the rendered list.
+  const sortedSavedJobs = [...savedJobs].sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+
+  // For each saved job reference (each item here has only an `id` and `savedAt`),
+  // look up the full job object from the main `jobs` array by matching the `id`.
+  // The `.map(...)` call returns either the matching job object or `undefined` if
+  // no job with that id exists anymore. The `.filter(Boolean)` step then removes
+  // any falsy values (like `undefined`) so that we only keep the real job objects.
+  // Because we started from `sortedSavedJobs`, the resulting `savedJobData` array
+  // preserves that order (most recently saved first).
+  const savedJobData = sortedSavedJobs
+    .map((savedJob) => jobs.find((job) => job.id === savedJob.id))
+    .filter(Boolean);
 
   if (savedJobData.length === 0) {
     return (
