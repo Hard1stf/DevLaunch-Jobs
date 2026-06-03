@@ -5,11 +5,31 @@ import JobGrid from '../components/JobGrid/JobGrid';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Layout from '../components/layout/Layout';
 import { filterJobs } from '../utils/filterJobs';
-import { jobs } from '../data/jobs';
+import useJobs from '../hooks/useJobs';
+import SkeletonGrid from '../components/UI/SkeletonGrid';
+import ErrorMessage from '../components/UI/ErrorMessage';
 
 const Home = ({savedJobs, toggleSaveJobs}) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedType, setSelectedType] = useState("All");
+
+    const {jobs, loading, error} = useJobs();
+
+    if(loading) {
+      return(
+        <Layout>
+          <SkeletonGrid />
+        </Layout>
+      )
+    }
+
+    if(error){
+      return(
+        <Layout>
+          <ErrorMessage message={error}/>
+        </Layout> 
+      )
+    }
     
     // passing jobs(jobs.js), searchTerm and selectedType to the filterJob.js utility function.
     const filteredJobs = filterJobs(jobs, searchTerm, selectedType);
