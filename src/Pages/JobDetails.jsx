@@ -17,7 +17,7 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   if(!job){
     return(
       <>
-      <Layout>
+      <Layout savedJobs={savedJobs}>
         <EmptyState 
           title={"Job Not Found"} 
           desc={"The job listing you requested does not exist or may have been removed."}
@@ -31,7 +31,7 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   
   return (
     <>
-    <Layout>
+    <Layout savedJobs={savedJobs}>
       <section className="w-full flex justify-center px-4 py-10">
         <div className="w-full max-w-3xl h-fit mt-10 relative border-slate-700 border px-4 p-8 flex flex-col gap-4">
           <div className="w-fit absolute flex items-center justify-center top-10 right-5">

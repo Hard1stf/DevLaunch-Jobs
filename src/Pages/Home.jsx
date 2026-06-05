@@ -17,7 +17,7 @@ const Home = ({savedJobs, toggleSaveJobs}) => {
 
     if(loading) {
       return(
-        <Layout>
+        <Layout savedJobs={savedJobs}>
           <SkeletonGrid />
         </Layout>
       )
@@ -25,7 +25,7 @@ const Home = ({savedJobs, toggleSaveJobs}) => {
 
     if(error){
       return(
-        <Layout>
+        <Layout savedJobs={savedJobs}>
           <ErrorMessage message={error}/>
         </Layout> 
       )
@@ -36,7 +36,7 @@ const Home = ({savedJobs, toggleSaveJobs}) => {
 
   return (
     <>
-      <Layout>
+      <Layout savedJobs={savedJobs}>
         <Hero />
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <Filters selectedType={selectedType} setSelectedType={setSelectedType} />

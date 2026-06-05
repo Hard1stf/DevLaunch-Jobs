@@ -21,7 +21,7 @@ const SavedJobs = ({ savedJobs }) => {
 
   if (savedJobData.length === 0) {
     return (
-      <Layout>
+      <Layout savedJobs={savedJobs}>
         <EmptyState
           title={'No Saved Jobs Yet'}
           desc={"Start saving jobs you're interested in and they'll appear here."}
@@ -32,7 +32,7 @@ const SavedJobs = ({ savedJobs }) => {
 
   return (
     <>
-      <Layout>
+      <Layout savedJobs={savedJobs}>
         <section className="w-full flex justify-center px-4 py-10">
           <div className="w-full lg:w-3/4 mt-10 p-4 overflow-x-auto">
             <table className="table-auto w-full border-separate border-spacing-1">

@@ -3,7 +3,7 @@ import { FaBars, FaTimes } from 'react-icons/fa';
 import { HiAcademicCap } from 'react-icons/hi2';
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ savedJobs = [] }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navLinkStyle = ({isActive}) => isActive ? "text-cyan-400" : "hover:text-cyan-400 transition-colors duration-300";
 
@@ -17,7 +17,9 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center gap-3 font-semibold">
             <NavLink to="/" className={navLinkStyle}>Home</NavLink>
-            <NavLink to="/saved-jobs" className={navLinkStyle}>Saved Job</NavLink>
+            <NavLink to="/saved-jobs" className={navLinkStyle}>
+              Saved Job 
+              <span className="ml-1 px-2 py-0.5 text-xs rounded-full bg-cyan-500 text-black font-bold">{savedJobs?.length || 0}</span></NavLink>
             <a href="https://github.com/Hard1stf" target='_blank' rel="noopener noreferrer" className='cursor-pointer hover:text-cyan-400 transition-color duration-300'>GitHub</a>
           </div>
 
