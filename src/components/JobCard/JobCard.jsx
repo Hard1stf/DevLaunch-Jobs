@@ -47,7 +47,7 @@ const JobCard = ({ job, savedJobs, toggleSaveJobs }) => {
               ))}
             </p>
           </div>
-          <div className="h-full flex justify-center items-center gap-4">
+          <div className="h-full flex justify-center items-center gap-3">
             <Button className="w-full mt-auto border border-cyan-500 lg:border-none" variant="secondary">
               Apply Now
             </Button>

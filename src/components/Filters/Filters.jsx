@@ -10,7 +10,7 @@ const Filters = ({ selectedType, setSelectedType }) => {
           <Button 
             key={filter}
             onClick={() => setSelectedType(filter)}
-            className={`border font-semibold cursor-pointe py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${selectedType === filter ? 'text-cyan-500 border-cyan-500' : 'text-white'}`}
+            className={`border font-semibold cursor-pointer py-2 px-4 rounded-full transition-all duration-300 ease-in-out ${selectedType === filter ? 'text-cyan-500 border-cyan-500' : 'text-white'}`}
             variant="secondary"
           >
             {filter}

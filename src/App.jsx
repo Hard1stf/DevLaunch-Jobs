@@ -6,6 +6,7 @@ import NotFound from "./pages/NotFound";
 import useLocalStorage from "./hooks/useLocalStorage";
 
 const App = () => {
+  // using custom-hook (useLocalStorage()).
   const [savedJobs, setSavedJobs] = useLocalStorage('savedJobs', []); 
 
   // Toggling the save job based on there id (job.id).
@@ -24,7 +25,6 @@ const App = () => {
       }
     };
     // saving saved jobs in localstorage whenever savedJob changes.
-    ;
   
   return(
     <>

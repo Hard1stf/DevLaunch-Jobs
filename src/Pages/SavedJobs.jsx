@@ -35,7 +35,7 @@ const SavedJobs = ({ savedJobs }) => {
       <Layout savedJobs={savedJobs}>
         <section className="w-full flex justify-center px-4 py-10">
           <div className="w-full lg:w-3/4 mt-10 p-4 overflow-x-auto">
-            <table className="table-auto w-full border-separate border-spacing-1">
+            <table className="min-w-[700px] table-auto w-full border-separate border-spacing-1">
               <thead className="bg-slate-700 text-white font-semibold">
                 <tr>
                   <th>#JobId</th>
@@ -56,10 +56,10 @@ const SavedJobs = ({ savedJobs }) => {
                       key={job.id}
                       className="transition-all duration-300 hover:bg-gray-600"
                     >
-                      <td className="p-2 text-center">{job.id}</td>
-                      <td className="p-2 text-center">{job.role}</td>
-                      <td className="p-2 text-center">{job.posted}</td>
-                      <td className="p-2 text-center">
+                      <td className="p-2 text-center whitespace-nowrap">{job.id}</td>
+                      <td className="p-2 text-center whitespace-nowrap">{job.role}</td>
+                      <td className="p-2 text-center whitespace-nowrap">{job.posted}</td>
+                      <td className="p-2 text-center whitespace-nowrap">
                         <div className=" flex flex-col">
                           <span>
                             {new Date(savedInfo.savedAt).toLocaleDateString()}
@@ -69,7 +69,7 @@ const SavedJobs = ({ savedJobs }) => {
                           </span>
                         </div>
                       </td>
-                      <td className="p-2 text-center">
+                      <td className="p-2 text-center whitespace-nowrap">
                         <Link
                           to={`/jobs/${job.id}`}
                           className="underline underline-offset-4"

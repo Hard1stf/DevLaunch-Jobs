@@ -8,6 +8,7 @@ import {
 } from 'react-icons/io5';
 import Layout from '../components/layout/Layout';
 import EmptyState from '../components/UI/EmptyState';
+import Button from '../components/UI/Button';
 
 const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   const { id } = useParams();
@@ -33,15 +34,15 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
     <>
     <Layout savedJobs={savedJobs}>
       <section className="w-full flex justify-center px-4 py-10">
-        <div className="w-full max-w-3xl h-fit mt-10 relative border-slate-700 border px-4 p-8 flex flex-col gap-4">
-          <div className="w-fit absolute flex items-center justify-center top-10 right-5">
+        <div className="w-full max-w-3xl h-fit mt-10 rounded-2xl shadow-lg relative border-slate-700 border px-4 p-8 flex flex-col gap-4">
+          <div className="w-fit absolute flex items-center justify-center top-2 right-2 md:top-10 md:right-5">
             <button onClick={() => toggleSaveJobs(job.id)}>
               {isJobSaved ? <IoBookmark className="text-3xl" /> : <IoBookmarkOutline className="text-3xl" />}
             </button>
           </div>
           {/* Head section */}
           <div className="flex flex-col gap-1 pb-8 border-b border-slate-700 text-slate-200 text-lg">
-            <h1 className="font-bold uppercase text-4xl">{job.role}</h1>
+            <h1 className="font-bold uppercase text-2xl md:text-4xl">{job.role}</h1>
             <div className="flex flex-col gap-1 items-start">
               <div className="flex gap-2">
                 <span className="font-semibold">{job.company}</span>•
@@ -76,7 +77,7 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
           </div>
           {/* Body section */}
           <div className="group flex flex-col gap-2">
-            <h2 className="font-semibold text-2xl">About the job</h2>
+            <h2 className="font-semibold text-xl md:text-2xl">About the job</h2>
             <p className="border-transparent border-l-2 group-hover:border-slate-400 pl-2">{job.description}</p>
             <p className="ml-2 flex flex-col gap-2">
               <span className="font-semibold text-lg">Requirements:</span>
@@ -89,9 +90,9 @@ const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
           </div>
           {/* Lower Section */}
           <div className="flex justify-center items-center gap-4">
-            <button className="w-full mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">
+            <Button className="w-full mt-auto px-3 py-2 bg-slate-400 text-slate-900 font-semibold rounded-2xl">
               Apply now
-            </button>
+            </Button>
           </div>
         </div>
       </section>

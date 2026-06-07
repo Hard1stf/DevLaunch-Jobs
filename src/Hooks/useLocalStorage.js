@@ -11,7 +11,7 @@ const useLocalStorage = (key, initialization) => {
       localStorage.setItem(key, JSON.stringify(storedValue))
     }, [key, storedValue])
 
-    return [storedValue, setStoredValue];
+    return [storedValue, setStoredValue]; //return the [state, setter]
 };
 
 export default useLocalStorage;
