@@ -25,6 +25,13 @@ const SavedJobs = ({ savedJobs }) => {
         <EmptyState
           title={'No Saved Jobs Yet'}
           desc={"Start saving jobs you're interested in and they'll appear here."}
+          action={{
+            button: (
+              <Link to="/" className="mt-6 rounded-xl bg-cyan-500 px-5 py-3 font-semibold text-black">
+                Browse Jobs
+              </Link>
+            )
+          }}
         />
       </Layout>
     );
