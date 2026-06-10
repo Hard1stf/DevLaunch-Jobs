@@ -15,14 +15,16 @@ const NotFound = ({ savedJobs }) => {
     <>
       <Layout savedJobs={ savedJobs }>
         <section className="flex flex-col items-center justify-center px-4 py-20">
-          <div className="relative group">
-            <img src={NotFound404} alt="404-not-found" className="max-w-2xl" />
-            <Button className="bg-transparent rounded-lg absolute bottom-24 transition-all duration-500 group-hover:bg-pink-800 group-hover:text-white left-56 uppercase text-pink-800 font-semibold tracking-widest border-2 border-pink-800 px-4 py-2">
-              <Link to={`/`} className="flex items-center gap-3">
+          <div className="group flex flex-col items-center gap-6">
+            <img src={NotFound404} alt="404-not-found" className="w-full max-w-sm md:max-w-2xl" />
+            <Link to={`/`} className="flex items-center gap-3">
+              <Button className="bg-transparent rounded-lg transition-all duration-500 group-hover:bg-pink-800 group-hover:text-white uppercase text-pink-800 font-semibold tracking-widest border-2 border-pink-800">
+              <span className='flex items-center gap-3'>
                 <IoRocketSharp className="text-2xl" />
                 Go back Home
-              </Link>
-            </Button>
+              </span>
+              </Button>
+            </Link>
           </div>
         </section>
       </Layout>
