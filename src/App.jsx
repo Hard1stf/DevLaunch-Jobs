@@ -37,7 +37,7 @@ const App = () => {
       <Route path="/" element={<Home savedJobs={savedJobs} toggleSaveJobs={toggleSaveJobs}/>}/>
       <Route path="/jobs/:id" element={<JobDetails savedJobs={savedJobs} toggleSaveJobs={toggleSaveJobs}/>}/>
       <Route path="/saved-jobs" element={<SavedJobs savedJobs={savedJobs}/>} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFound  savedJobs={savedJobs}/>} />
     </Routes>
     </BrowserRouter>
     </>
