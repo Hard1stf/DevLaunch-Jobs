@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Filters from '../components/Filters/Filters';
 import Hero from '../components/Hero/Hero';
 import JobGrid from '../components/JobGrid/JobGrid';
@@ -14,6 +14,10 @@ const Home = ({savedJobs, toggleSaveJobs}) => {
     const [selectedType, setSelectedType] = useState("All");
 
     const {jobs, loading, error} = useJobs();
+
+    useEffect(() => {
+      document.title = 'DevLaunch Jobs';
+    }, []);
 
     if(loading) {
       return(

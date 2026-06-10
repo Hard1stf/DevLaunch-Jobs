@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { jobs } from '../data/jobs';
 import Layout from '../components/layout/Layout';
 import EmptyState from '../components/UI/EmptyState';
+import { useEffect } from 'react';
 
 const SavedJobs = ({ savedJobs }) => {
   // Clone the saved jobs array and sort it in descending order by savedAt date,
@@ -18,6 +19,10 @@ const SavedJobs = ({ savedJobs }) => {
   const savedJobData = sortedSavedJobs
     .map((savedJob) => jobs.find((job) => job.id === savedJob.id))
     .filter(Boolean);
+  
+    useEffect(() => {
+      document.title = 'Saved Jobs | DevLaunch Job';
+    }, []);
 
   if (savedJobData.length === 0) {
     return (

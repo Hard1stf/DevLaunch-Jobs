@@ -9,11 +9,20 @@ import {
 import Layout from '../components/layout/Layout';
 import EmptyState from '../components/UI/EmptyState';
 import Button from '../components/UI/Button';
+import { useEffect } from 'react';
 
 const JobDetails = ({ savedJobs, toggleSaveJobs }) => {
   const { id } = useParams();
 
   const job = jobs.find((job) => job.id === Number(id));
+
+  useEffect(() => {
+    if(job){
+      document.title = `${job.role} | DevLaunch Jobs`;
+    }else{
+      document.title = 'Job Not Found | DevLaunch Jobs';
+    }
+  }, [job]);
   
   if(!job){
     return(
