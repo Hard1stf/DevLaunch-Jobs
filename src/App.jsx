@@ -5,7 +5,7 @@ import SavedJobs from "./Pages/SavedJobs";
 import NotFound from "./Pages/NotFound";
 import useLocalStorage from "./Hooks/useLocalStorage";
 import toast from "react-hot-toast";
-import { TOAST_MESSAGES } from "./utils/toastMessages";
+import { TOAST_MESSAGES } from "./Utils/toastMessages";
 
 const App = () => {
   // using custom-hook (useLocalStorage()).
