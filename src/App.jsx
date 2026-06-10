@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import JobDetails from "./pages/JobDetails";
-import SavedJobs from "./pages/SavedJobs";
-import NotFound from "./pages/NotFound";
-import useLocalStorage from "./hooks/useLocalStorage";
+import Home from "./Pages/Home";
+import JobDetails from "./Pages/JobDetails";
+import SavedJobs from "./Pages/SavedJobs";
+import NotFound from "./Pages/NotFound";
+import useLocalStorage from "./Hooks/useLocalStorage";
 import toast from "react-hot-toast";
 import { TOAST_MESSAGES } from "./utils/toastMessages";
 
