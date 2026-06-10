@@ -14,7 +14,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/Hard1stf/DevLaunch-Jobs?style=for-the-badge)
 
 A modern and responsive frontend job board built with React and Tailwind CSS.
-![DevLaunch Jobs Banner](./README-assets/banner.png)
+![DevLaunch Jobs Banner](./README-assets/Banner.png)
 
 🔗 Live Demo: https://dev-launch-jobs.vercel.app/
 
