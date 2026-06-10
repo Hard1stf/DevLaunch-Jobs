@@ -1,4 +1,4 @@
-import Footer from "../Footer/Footer";
+import Footer from "../footer/Footer";
 import MobileBottomNav from "../Navbar/MobileBottomNav";
 import Navbar from "../Navbar/Navbar";
 
