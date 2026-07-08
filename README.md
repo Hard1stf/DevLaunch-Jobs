@@ -105,48 +105,53 @@ Users can:
 ```text
 src
 ├── assets
-│   ├── images
-│   └── icons
+│   ├── hero.png
+│   ├── NotFound-404.png
+│   ├── react.svg
+│   └── vite.svg
 ├── components
+│   ├── Filters
+│   │   └── Filters.jsx
+│   ├── Hero
+│   │   └── Hero.jsx
+│   ├── JobCard
+│   │   └── JobCard.jsx
+│   ├── JobGrid
+│   │   └── JobGrid.jsx
 │   ├── Navbar
 │   │   ├── Navbar.jsx
-│   │   └── Navbar.css
-│   ├── Footer
-│   │   ├── Footer.jsx
-│   │   └── Footer.css
+│   │   └── MobileBottomNav.jsx
+│   ├── SearchBar
+│   │   └── SearchBar.jsx
 │   ├── UI
-│   │   ├── JobCard.jsx
-│   │   ├── SearchBar.jsx
-│   │   ├── FilterButtons.jsx
-│   │   ├── Skeleton.jsx
-│   │   └── Toast.jsx
-│   └── Layout
-│       ├── MainLayout.jsx
-│       └── Container.jsx
+│   │   ├── Button.jsx
+│   │   ├── EmptyState.jsx
+│   │   ├── ErrorMessage.jsx
+│   │   ├── SkeletonCard.jsx
+│   │   └── SkeletonGrid.jsx
+│   ├── footer
+│   │   └── Footer.jsx
+│   └── layout
+│       └── Layout.jsx
 ├── data
-│   └── jobs.json
+│   └── jobs.js
 ├── hooks
 │   ├── useJobs.js
-│   ├── useSavedJobs.js
-│   └── useSearch.js
+│   └── useLocalStorage.js
 ├── pages
 │   ├── Home.jsx
 │   ├── JobDetails.jsx
 │   ├── SavedJobs.jsx
 │   └── NotFound.jsx
 ├── services
-│   ├── jobService.js
-│   └── storageService.js
+│   └── jobService.js
 ├── utils
-│   ├── helpers.js
-│   ├── validators.js
-│   └── formatters.js
-├── constants
-│   ├── jobTypes.js
-│   └── routes.js
+│   ├── filterJobs.js
+│   └── toastMessages.js
 ├── App.jsx
 ├── App.css
-└── index.css
+├── index.css
+└── main.jsx
 ```
 
 ---
