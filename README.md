@@ -13,7 +13,7 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Hard1stf/DevLaunch-Jobs?style=for-the-badge)
 
-A modern and responsive frontend job board built with React and Tailwind CSS.
+A responsive job portal built with React, Vite, and Tailwind CSS that enables users to discover developer jobs, search by keywords, filter opportunities by job type, and save jobs for later using persistent browser storage.
 ![DevLaunch Jobs Banner](./README-assets/Banner.png)
 
 🔗 Live Demo: https://dev-launch-jobs.vercel.app/
@@ -22,7 +22,9 @@ A modern and responsive frontend job board built with React and Tailwind CSS.
 
 ## Overview
 
-DevLaunch Jobs helps developers discover internships and full-time opportunities through a clean and responsive interface.
+DevLaunch Jobs is a frontend job portal designed to provide a clean and intuitive job browsing experience. Users can explore developer opportunities, search across multiple job attributes, filter listings by employment type, view detailed job descriptions, and bookmark jobs for future reference.
+
+The project focuses on reusable React components, responsive UI design, and modern frontend development practices.
 
 Users can:
 
@@ -37,66 +39,64 @@ Users can:
 
 ## Features
 
-### Job Discovery
+### Job Browsing
 
-* Browse job listings
-* Responsive card-based layout
-* Dynamic job details pages
+- Browse developer job listings
+- Dynamic job detail pages
+- Responsive card-based layout
 
-### Search & Filtering
+### Search & Filter
 
-* Search by:
-
-  * Role
-  * Company
-  * Location
-  * Skills
-* Filter jobs by:
-
-  * All
-  * Internship
-  * Full-time
+- Search by role, company, location, or skills
+- Filter jobs by Internship or Full-time
 
 ### Saved Jobs
 
-* Save favorite jobs
-* Remove saved jobs
-* Persistent storage using Local Storage
-* Saved timestamp tracking
+- Save and remove bookmarked jobs
+- Persistent Local Storage
+- Saved timestamp tracking
 
 ### User Experience
 
-* Toast notifications
-* Loading skeletons
-* Empty states
-* Error handling
-* Active navigation states
-* Mobile bottom navigation
+- Responsive layouts
+- Skeleton loading states
+- Toast notifications
+- Empty state screens
+- Active navigation
+- Mobile bottom navigation
 
 ### Accessibility
 
-* Semantic HTML
-* Keyboard-friendly controls
-
+- Semantic HTML structure
+- Keyboard-friendly interactive elements
 ---
 
 ## Tech Stack
 
 ### Frontend
 
-* React
-* React Router DOM
-* Tailwind CSS
+- React
+- React Router DOM
+- Tailwind CSS
+
+### State Management
+
+- React Hooks
+- Custom `useLocalStorage` Hook
 
 ### Libraries
 
-* React Icons
-* React Hot Toast
+- React Icons
+- React Hot Toast
 
-### Tools
+### Build Tools
 
-* Vite
-* ESLint
+- Vite
+- ESLint
+
+### Deployment
+
+- Vercel
 
 ---
 
@@ -210,45 +210,52 @@ npm run preview
 ```
 
 ---
-
 ## Future Improvements
 
-Potential future enhancements:
-
-* Backend integration
-* Real job APIs
-* Authentication
-* User profiles
-* Job application tracking
-* Pagination
-* Dark/Light theme switcher
+- Integrate a real jobs API
+- Backend authentication
+- User accounts
+- Advanced search and filtering
+- Pagination
+- Dark mode
+- Unit testing
+- Infinite scrolling
 
 ---
 
 ## Learning Outcomes
 
-This project helped strengthen understanding of:
+Through this project, I gained practical experience with:
 
-* React component architecture
-* Custom Hooks
-* React Router
-* Local Storage persistence
-* State management patterns
-* Responsive UI design
-* Reusable component systems
-* Production-ready frontend structure
+- Building reusable React components
+- Client-side routing with React Router
+- Managing persistent state using a custom `useLocalStorage` hook
+- Designing responsive interfaces with Tailwind CSS
+- Organizing projects using a modular folder structure
+- Enhancing user experience with skeleton loaders and toast notifications
 
 ---
 
+## Challenges
+
+Some of the key challenges while building this project included:
+
+- Designing reusable UI components to avoid duplication.
+- Persisting bookmarked jobs across browser sessions.
+- Creating a responsive experience for both desktop and mobile users.
+- Managing search and filtering while keeping the code modular and maintainable.
+
+---
+
+## Why I Built This
+
+I built DevLaunch Jobs to strengthen my React fundamentals by creating a realistic frontend application that combines routing, reusable components, persistent state, and responsive UI design into a complete user experience.
+
+---
 ## Author
 
-Hardik Vijeta
+**Hardik Vijeta**
 
-GitHub:
-https://github.com/Hard1stf
-
-Project Repository:
-https://github.com/Hard1stf/DevLaunch-Jobs
-
-Live Demo:
-https://dev-launch-jobs.vercel.app/
+- GitHub: https://github.com/Hard1stf
+- Live Demo: https://dev-launch-jobs.vercel.app/
+- Repository: https://github.com/Hard1stf/DevLaunch-Jobs
