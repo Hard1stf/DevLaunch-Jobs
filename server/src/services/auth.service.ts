@@ -1,6 +1,9 @@
 import bcrypt from 'bcryptjs';
 import { UserModel } from '../models/User.js';
-import type { RegisterInput } from '../validators/auth.validator.js';
+import type {
+  RegisterInput,
+  LoginInput,
+} from '../validators/auth.validator.js';
 import { APIError } from '../utils/APIError.js';
 
 export const registerUser = async (input: RegisterInput) => {
@@ -17,7 +20,28 @@ export const registerUser = async (input: RegisterInput) => {
   });
 
   return {
-    id: user.id,
+    id: user._id,
+    email: user.email,
+    role: user.role,
+  };
+};
+
+export const loginUser = async (input: LoginInput) => {
+  const user = await UserModel.findOne({
+    email: input.email,
+  }).select('+passwordHash'); // this is overriding the schema select:false.
+
+  if (!user) throw new APIError(401, 'Invalid email and password');
+
+  const isPasswordValid = await bcrypt.compare(
+    input.password,
+    user.passwordHash,
+  );
+
+  if (!isPasswordValid) throw new APIError(401, 'Invalid email and password');
+
+  return {
+    id: user._id,
     email: user.email,
     role: user.role,
   };
