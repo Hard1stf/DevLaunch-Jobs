@@ -44,7 +44,15 @@ export const login = async (
 
     const user = await loginUser(result.data);
 
-    res.status(200).json(new APIResponse(user, 'Login successful'));
+    res
+      .status(200)
+      .cookie('accessToken', user.token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      })
+      .json(new APIResponse(user.user, 'Login successful'));
   } catch (error) {
     next(error);
   }

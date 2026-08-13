@@ -5,6 +5,7 @@ import type {
   LoginInput,
 } from '../validators/auth.validator.js';
 import { APIError } from '../utils/APIError.js';
+import { generateToken } from '../utils/jwt.js';
 
 export const registerUser = async (input: RegisterInput) => {
   const existingUser = await UserModel.findOne({ email: input.email });
@@ -40,9 +41,17 @@ export const loginUser = async (input: LoginInput) => {
 
   if (!isPasswordValid) throw new APIError(401, 'Invalid email and password');
 
-  return {
-    id: user._id,
-    email: user.email,
+  const token = generateToken({
+    userId: user._id.toString(),
     role: user.role,
+  });
+
+  return {
+    user: {
+      id: user._id,
+      email: user.email,
+      role: user.role,
+    },
+    token,
   };
 };
