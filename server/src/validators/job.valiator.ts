@@ -4,7 +4,7 @@ const jobTypeSchema = z.enum([
   'full-time',
   'part-time',
   'internship',
-  'contact',
+  'contract',
 ]);
 
 const jobStatus = z.enum(['open', 'closed']);
