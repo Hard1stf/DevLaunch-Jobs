@@ -36,7 +36,7 @@ const jobSchema = new Schema(
       default: [],
     },
     requirements: {
-      type: String,
+      type: [String],
       default: [],
     },
     description: {
