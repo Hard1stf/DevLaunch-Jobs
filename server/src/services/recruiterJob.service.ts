@@ -14,6 +14,12 @@ export const createJob = async (recruiterId: string, data: CreateJobInput) => {
   return job;
 };
 
+export const getRecruiterJobs = async (recruiterId: string) => {
+  const jobs = await JobModel.find({ recruiterId }).sort({ createdAt: -1 });
+
+  return jobs;
+};
+
 export const updateJob = async (
   recruiterId: string,
   jobId: string,

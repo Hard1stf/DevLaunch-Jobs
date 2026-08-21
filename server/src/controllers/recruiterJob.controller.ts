@@ -9,6 +9,7 @@ import {
   createJob,
   updateJob,
   deleteJob,
+  getRecruiterJobs,
 } from '../services/recruiterJob.service.js';
 import { APIResponse } from '../utils/APIResponse.js';
 
@@ -58,6 +59,24 @@ export const deleteJobController = async (
     await deleteJob(recruiterId, jobId);
 
     res.status(200).json(new APIResponse(null, 'Job deleted Successfully'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getRecruiterJobsController = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const recruiterId = req.user!.userId;
+
+    const jobs = await getRecruiterJobs(recruiterId);
+
+    res
+      .status(200)
+      .json(new APIResponse(jobs, 'Recruiter jobs fetched successfully'));
   } catch (error) {
     next(error);
   }
