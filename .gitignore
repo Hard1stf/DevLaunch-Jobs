@@ -36,4 +36,5 @@ lerna-debug.log*
 # Project-generated files
 todo.txt
 repo-structure.json
+test-credentials.json
 repo-structure.txt
