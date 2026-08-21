@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 const jobTypeSchema = z.enum([
   'full-time',
@@ -8,16 +8,20 @@ const jobTypeSchema = z.enum([
 ]);
 
 export const jobIdParamSchema = z.object({
-    jobId: z.string().trim().min(1, 'Zob ID is required'),
+  jobId: z
+    .string()
+    .trim()
+    .min(1, 'Job ID is required')
+    .regex(/^[0-9a-fA-f]{24}$/, 'Invalid Job Id'),
 });
 
 export const jobListQuerySchema = z.object({
-    search: z.string().trim().optional(),
-    location: z.string().trim().optional(),
-    type: jobTypeSchema.optional(),
-    page: z.coerce.number().int().min(1).default(1),
-    limit: z.coerce.number().int().min(1).max(50).default(20),
-    sort: z.enum(['latest']).default('latest'),
+  search: z.string().trim().optional(),
+  location: z.string().trim().optional(),
+  type: jobTypeSchema.optional(),
+  page: z.coerce.number().int().min(1).default(1),
+  limit: z.coerce.number().int().min(1).max(50).default(20),
+  sort: z.enum(['latest']).default('latest'),
 });
 
 export type JobListQueryInput = z.infer<typeof jobListQuerySchema>;
