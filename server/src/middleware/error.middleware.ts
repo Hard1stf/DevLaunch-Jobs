@@ -26,6 +26,16 @@ const errorMiddleware: ErrorRequestHandler = (err, _req, res, _next) => {
     return;
   }
 
+  if(err?.code === 11000){
+    const apiError = new APIError(409, 'Resource is already exists');
+
+    res.status(apiError.statusCode).json({
+      success: false,
+      message: apiError.message,
+    });
+    return;
+  }
+
   res.status(500).json({ success: false, message: 'Internal server error' });
 };
 
