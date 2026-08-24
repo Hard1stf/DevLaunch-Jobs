@@ -1,7 +1,7 @@
 import type { Response, NextFunction } from 'express';
 import type { AuthenticatedRequest } from '../middleware/auth.middleware.js';
 import { jobIdParamSchema } from '../validators/jobQuery.validator.js';
-import { saveJob } from '../services/savedJob.service.js';
+import { getSavedJobs, saveJob } from '../services/savedJob.service.js';
 import { APIResponse } from '../utils/APIResponse.js';
 
 export const saveJobController = async (
@@ -17,6 +17,24 @@ export const saveJobController = async (
     const savedJob = await saveJob(candidateId, jobId);
 
     res.status(201).json(new APIResponse(savedJob, 'Job Saved Successfully'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getSavedJobsController = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const candidateId = req.user!.userId;
+
+    const savedJobs = await getSavedJobs(candidateId);
+
+    res
+      .status(200)
+      .json(new APIResponse(savedJobs, 'Saved Jobs fetched successfully.'));
   } catch (error) {
     next(error);
   }

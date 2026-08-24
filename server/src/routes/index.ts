@@ -8,7 +8,7 @@ const router = Router();
 
 router.use('/auth', authRouter);
 router.use('/jobs', jobRouter);
-router.use('/jobs', savedJobRouter);
+router.use('/saved-jobs', savedJobRouter);
 router.use('/recruiter/jobs', recruiterJobRouter);
 
 export default router;
