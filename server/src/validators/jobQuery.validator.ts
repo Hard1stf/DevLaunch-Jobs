@@ -15,6 +15,10 @@ export const jobIdParamSchema = z.object({
     .regex(/^[0-9a-fA-f]{24}$/, 'Invalid Job Id'),
 });
 
+export const savedJobIdParamSchema = jobIdParamSchema
+  .omit({ jobId: true })
+  .extend({ savedJob: jobIdParamSchema.shape.jobId });
+
 export const jobListQuerySchema = z.object({
   search: z.string().trim().optional(),
   location: z.string().trim().optional(),
