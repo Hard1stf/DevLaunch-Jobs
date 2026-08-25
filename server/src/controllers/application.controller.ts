@@ -1,6 +1,9 @@
 import type { Response, NextFunction } from 'express';
 import type { AuthenticatedRequest } from '../middleware/auth.middleware.js';
-import { createApplication } from '../services/application.service.js';
+import {
+  createApplication,
+  getApplications,
+} from '../services/application.service.js';
 import { jobIdParamSchema } from '../validators/jobQuery.validator.js';
 import { APIResponse } from '../utils/APIResponse.js';
 
@@ -20,6 +23,24 @@ export const createApplicationController = async (
       .json(
         new APIResponse(application, 'JApplication submitted successfully'),
       );
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getCandidateApplicationsController = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const candidateId = req.user!.userId;
+
+    const applications = await getApplications(candidateId);
+
+    res
+      .status(200)
+      .json(new APIResponse(applications, 'Applications fetched successfully'));
   } catch (error) {
     next(error);
   }

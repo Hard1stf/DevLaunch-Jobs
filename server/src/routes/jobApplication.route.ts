@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getCandidateApplicationsController } from '../controllers/application.controller.js';
+import { createApplicationController } from '../controllers/application.controller.js';
 import { authenticate } from '../middleware/auth.middleware.js';
 import { authorizeRole } from '../middleware/role.middleware.js';
 
@@ -8,6 +8,6 @@ const router = Router();
 router.use(authenticate);
 router.use(authorizeRole('candidate'));
 
-router.get('/', getCandidateApplicationsController);
+router.post('/:jobId/application', createApplicationController);
 
 export default router;
