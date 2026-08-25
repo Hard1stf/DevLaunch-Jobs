@@ -20,3 +20,14 @@ export const getSavedJobs = async (candidateId: string) => {
 
   return savedJobs;
 };
+
+export const unsaveJob = async (candidateId: string, savedJobId: string) => {
+  const savedJob = await SavedJobModel.findOne({
+    _id: savedJobId,
+    candidateId,
+  });
+
+  if (!savedJob) throw new APIError(404, 'Job not Found');
+
+  await savedJob.deleteOne();
+};

@@ -1,7 +1,11 @@
 import type { Response, NextFunction } from 'express';
 import type { AuthenticatedRequest } from '../middleware/auth.middleware.js';
-import { jobIdParamSchema } from '../validators/jobQuery.validator.js';
-import { getSavedJobs, saveJob } from '../services/savedJob.service.js';
+import { jobIdParamSchema, savedJobIdParamSchema } from '../validators/jobQuery.validator.js';
+import {
+  getSavedJobs,
+  saveJob,
+  unsaveJob,
+} from '../services/savedJob.service.js';
 import { APIResponse } from '../utils/APIResponse.js';
 
 export const saveJobController = async (
@@ -35,6 +39,23 @@ export const getSavedJobsController = async (
     res
       .status(200)
       .json(new APIResponse(savedJobs, 'Saved Jobs fetched successfully.'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const unsaveJobController = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const candidateId = req.user!.userId;
+    const { savedJob } = savedJobIdParamSchema.parse(req.params);
+
+    await unsaveJob(candidateId, savedJob);
+
+    res.status(200).json(new APIResponse(null, 'Job is Unsave successfully'));
   } catch (error) {
     next(error);
   }
