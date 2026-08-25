@@ -16,7 +16,7 @@ export const saveJob = async (candidateId: string, jobId: string) => {
 };
 
 export const getSavedJobs = async (candidateId: string) => {
-  const savedJobs = await SavedJobModel.find({ candidateId });
+  const savedJobs = await SavedJobModel.find({ candidateId }).sort({createdAt : -1});
 
   return savedJobs;
 };
