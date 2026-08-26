@@ -1,4 +1,3 @@
-import { application } from 'express';
 import { ApplicationModel } from '../models/Application.js';
 import { JobModel } from '../models/Job.js';
 import { APIError } from '../utils/APIError.js';
