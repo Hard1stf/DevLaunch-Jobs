@@ -26,3 +26,17 @@ export const getApplications = async (candidateId: string) => {
 
   return applications;
 };
+
+export const getApplicationById = async (
+  candidateId: string,
+  applicationId: string,
+) => {
+  const application = await ApplicationModel.findOne({
+    _id: applicationId,
+    candidateId,
+  }).lean();
+
+  if (!application) throw new APIError(404, 'Application not Found');
+
+  return application;
+};
