@@ -40,3 +40,21 @@ export const getApplicationById = async (
 
   return application;
 };
+
+export const getRecruiterApplications = async (
+  recruiterId: string,
+  jobId: string,
+) => {
+  const job = await JobModel.findOne({
+    _id: jobId,
+    recruiterId,
+  });
+
+  if (!job) throw new APIError(404, 'Job not found');
+
+  const application = await ApplicationModel.find({
+    jobId,
+  }).sort({ createdAt: -1 });
+
+  return application;
+};

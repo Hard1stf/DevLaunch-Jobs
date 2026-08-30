@@ -4,6 +4,7 @@ import {
   getApplicationById,
   createApplication,
   getApplications,
+  getRecruiterApplications,
 } from '../services/application.service.js';
 import { jobIdParamSchema } from '../validators/jobQuery.validator.js';
 import { APIResponse } from '../utils/APIResponse.js';
@@ -62,6 +63,26 @@ export const getApplicationByIdController = async (
     res
       .status(200)
       .json(new APIResponse(application, 'Application fetched successfully'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getRecruiterApplicationsController = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const recruiterId = req.user!.userId;
+
+    const { jobId } = jobIdParamSchema.parse(req.params);
+
+    const application = await getRecruiterApplications(recruiterId, jobId);
+
+    res
+      .status(200)
+      .json(new APIResponse(application, 'Applications fetched successfully'));
   } catch (error) {
     next(error);
   }
