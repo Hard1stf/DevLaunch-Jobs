@@ -15,6 +15,6 @@ router.use('/saved-jobs', savedJobRouter);
 router.use('/recruiter/jobs', recruiterJobRouter);
 router.use('/applications', applicationRouter);
 router.use('/jobs', jobApplicationRouter);
-router.use('/recruiter/jobs', recruiterApplicationRouter);
+router.use('/recruiter', recruiterApplicationRouter);
 
 export default router;
