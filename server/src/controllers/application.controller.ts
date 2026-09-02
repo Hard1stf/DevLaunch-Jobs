@@ -5,10 +5,14 @@ import {
   createApplication,
   getApplications,
   getRecruiterApplications,
+  updateApplicationStatus,
 } from '../services/application.service.js';
 import { jobIdParamSchema } from '../validators/jobQuery.validator.js';
 import { APIResponse } from '../utils/APIResponse.js';
-import { applicationIdParamSchema } from '../validators/applicationQuery.validator.js';
+import {
+  applicationIdParamSchema,
+  updateApplicationStatusSchema,
+} from '../validators/applicationQuery.validator.js';
 
 export const createApplicationController = async (
   req: AuthenticatedRequest,
@@ -83,6 +87,33 @@ export const getRecruiterApplicationsController = async (
     res
       .status(200)
       .json(new APIResponse(application, 'Applications fetched successfully'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateApplicationStatusController = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const recruiterId = req.user!.userId;
+
+    const { applicationId } = applicationIdParamSchema.parse(req.params);
+    const { status } = updateApplicationStatusSchema.parse(req.body);
+
+    const application = await updateApplicationStatus(
+      recruiterId,
+      applicationId,
+      status,
+    );
+
+    res
+      .status(200)
+      .json(
+        new APIResponse(application, 'Application status updated successfully'),
+      );
   } catch (error) {
     next(error);
   }

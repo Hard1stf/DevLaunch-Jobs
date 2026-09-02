@@ -1,6 +1,7 @@
 import { ApplicationModel } from '../models/Application.js';
 import { JobModel } from '../models/Job.js';
 import { APIError } from '../utils/APIError.js';
+import { ApplicationStatus } from '../validators/applicationQuery.validator.js';
 
 export const createApplication = async (candidateId: string, jobId: string) => {
   const job = await JobModel.findOne({
@@ -55,6 +56,29 @@ export const getRecruiterApplications = async (
   const application = await ApplicationModel.find({
     jobId,
   }).sort({ createdAt: -1 });
+
+  return application;
+};
+
+export const updateApplicationStatus = async (
+  recruiterId: string,
+  applicationId: string,
+  status: ApplicationStatus,
+) => {
+  const application = await ApplicationModel.findById(applicationId);
+
+  if (!application) throw new APIError(404, 'Application Not Found');
+
+  const job = await JobModel.findOne({
+    _id: application.jobId,
+    recruiterId,
+  });
+
+  if (!job) throw new APIError(404, 'Application Not Found');
+
+  application.status = status;
+
+  await application.save();
 
   return application;
 };
