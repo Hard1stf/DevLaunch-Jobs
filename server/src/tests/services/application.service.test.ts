@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-import { ApplicationModel } from '../models/Application.js';
-import { JobModel } from '../models/Job.js';
+import { ApplicationModel } from '../../models/Application.js';
+import { JobModel } from '../../models/Job.js';
 
-import { createApplication } from '../services/application.service.js';
+import { createApplication, getApplications } from '../../services/application.service.js';
 
 // "vi" object call mock() to replace an imported modules with a mocked version.
 vi.mock('../models/Application.js', () => ({
