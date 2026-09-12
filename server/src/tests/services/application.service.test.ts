@@ -5,6 +5,7 @@ import { JobModel } from '../../models/Job.js';
 
 import {
   createApplication,
+  getApplicationById,
   getApplications,
 } from '../../services/application.service.js';
 
@@ -13,6 +14,7 @@ vi.mock('../../models/Application.js', () => ({
   ApplicationModel: {
     create: vi.fn(), // "vi" call fn() to create a fake function.
     find: vi.fn(),
+    findOne: vi.fn(),
   },
 }));
 // this means, when this test imports "ApplicationModel", don't give me the real one. Give me this fake one instead.
@@ -153,5 +155,58 @@ describe('getApplications', () => {
     expect(result).toEqual([]);
 
     expect(sortMock).toHaveBeenCalledWith({ createdAt: -1 });
+  });
+});
+
+describe('getApplicationById', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should return an application belonging to the candidate', async () => {
+    const candidateId = 'candidate-123';
+    const applicationId = 'application-123';
+
+    const mockApplication = {
+      _id: applicationId,
+      candidateId,
+      jobId: 'job-123',
+      status: 'applied',
+    };
+
+    const leanMock = vi.fn().mockResolvedValue(mockApplication);
+
+    vi.mocked(ApplicationModel.findOne).mockReturnValue({lean: leanMock} as never);
+
+    const result = await getApplicationById(candidateId, applicationId);
+
+    expect(ApplicationModel.findOne).toHaveBeenCalledWith({
+      _id: applicationId,
+      candidateId,
+    });
+
+    expect(leanMock).toHaveBeenCalled();
+
+    expect(result).toEqual(mockApplication);
+  });
+
+  it('should throw an error when application does not exist or does not belong to the candidate', async () => {
+    const candidateId = 'candidate-123';
+    const applicationId = 'application-123';
+
+    const leanMock = vi.fn().mockResolvedValue(null);
+
+    vi.mocked(ApplicationModel.findOne).mockReturnValue({lean: leanMock} as never);
+
+    await expect(
+      getApplicationById(candidateId, applicationId)
+    ).rejects.toThrow('Application not Found');
+
+    expect(ApplicationModel.findOne).toHaveBeenCalledWith({
+      _id: applicationId,
+      candidateId,
+    });
+    
+    expect(leanMock).toHaveBeenCalledWith();
   });
 });
