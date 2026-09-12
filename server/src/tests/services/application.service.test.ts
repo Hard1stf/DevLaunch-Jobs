@@ -3,17 +3,21 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { ApplicationModel } from '../../models/Application.js';
 import { JobModel } from '../../models/Job.js';
 
-import { createApplication, getApplications } from '../../services/application.service.js';
+import {
+  createApplication,
+  getApplications,
+} from '../../services/application.service.js';
 
 // "vi" object call mock() to replace an imported modules with a mocked version.
-vi.mock('../models/Application.js', () => ({
+vi.mock('../../models/Application.js', () => ({
   ApplicationModel: {
     create: vi.fn(), // "vi" call fn() to create a fake function.
+    find: vi.fn(),
   },
 }));
 // this means, when this test imports "ApplicationModel", don't give me the real one. Give me this fake one instead.
 
-vi.mock('../models/Job.js', () => ({
+vi.mock('../../models/Job.js', () => ({
   JobModel: {
     findOne: vi.fn(),
   },
@@ -23,13 +27,11 @@ vi.mock('../models/Job.js', () => ({
 // These tests are about "createApplication".
 // it doesn't perform the test itself. It organizes them.
 describe('createApplication', () => {
-
   // this means, before every test, clear the history of our mocks.
-  // this is important to reset the recorder call history. 
+  // this is important to reset the recorder call history.
   beforeEach(() => {
-
     //_ importantly "clearAllMocks()" clears mock history without removing the mock implementations.
-    vi.clearAllMocks(); 
+    vi.clearAllMocks();
   });
 
   // "it()" defines one test case.
@@ -50,9 +52,9 @@ describe('createApplication', () => {
     };
 
     vi.mocked(JobModel.findOne).mockResolvedValue(mockJob as never);
-    
+
     // [1] vi.mocked() means this function is going to be mocked and ended up with returning {this object values (mockJob and mockApplication)}.
-    // When ApplicationModel.create() is called, pretend MongoDB successfully create the application and return "mockApplication". 
+    // When ApplicationModel.create() is called, pretend MongoDB successfully create the application and return "mockApplication".
     vi.mocked(ApplicationModel.create).mockResolvedValue(
       mockApplication as never,
     );
@@ -88,15 +90,68 @@ describe('createApplication', () => {
     vi.mocked(JobModel.findOne).mockResolvedValue(null);
 
     // I expect createApplication() to reject withe an error containing message "Job not found or not open for apply".
-    await expect(
-        createApplication(candidateId, jobId)
-    ).rejects.toThrow(
+    await expect(createApplication(candidateId, jobId)).rejects.toThrow(
       'Job not found or not open for apply',
     );
-    // Vitest supports .rejects for assertions against rejected promises, which is especially useful for async functions. 
+    // Vitest supports .rejects for assertions against rejected promises, which is especially useful for async functions.
 
     // [Final Assertion]
     expect(ApplicationModel.create).not.toHaveBeenCalled();
-    // this means, because there was no valid job, the application should never been cerated. 
+    // this means, because there was no valid job, the application should never been cerated.
+  });
+});
+
+describe('getApplications', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it('should return applications for a candidate sorted by newest first', async () => {
+    const candidateId = 'candidate-123';
+
+    const mockApplication = [
+      {
+        _id: 'application-123',
+        candidateId,
+        jobId: 'job-123',
+        status: 'applied',
+      },
+      {
+        _id: 'application-123',
+        candidateId,
+        jobId: 'job-123',
+        status: 'reviewing',
+      },
+    ];
+
+    const sortMock = vi.fn().mockResolvedValue(mockApplication);
+
+    vi.mocked(ApplicationModel.find).mockReturnValue({
+      sort: sortMock,
+    } as never);
+
+    const result = await getApplications(candidateId);
+
+    expect(ApplicationModel.find).toHaveBeenCalledWith({ candidateId });
+
+    expect(sortMock).toHaveBeenCalledWith({ createdAt: -1 });
+
+    expect(result).toEqual(mockApplication);
+  });
+
+  it('should return an empty array when the candidate has no application', async () => {
+    const candidateId = 'candidate-123';
+
+    const sortMock = vi.fn().mockResolvedValue([]);
+
+    vi.mocked(ApplicationModel.find).mockReturnValue({
+      sort: sortMock,
+    } as never);
+
+    const result = await getApplications(candidateId);
+
+    expect(result).toEqual([]);
+
+    expect(sortMock).toHaveBeenCalledWith({ createdAt: -1 });
   });
 });
