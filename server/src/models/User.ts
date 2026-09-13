@@ -18,7 +18,7 @@ const profileSchema = new Schema(
       type: String,
       trim: true,
     },
-    skill: {
+    skills: {
       type: [String],
       default: [],
     },
