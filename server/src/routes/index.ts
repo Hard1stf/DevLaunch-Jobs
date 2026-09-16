@@ -6,6 +6,7 @@ import savedJobRouter from '../routes/savedJob.route.js';
 import applicationRouter from '../routes/application.route.js';
 import jobApplicationRouter from '../routes/jobApplication.route.js';
 import recruiterApplicationRouter from '../routes/recruiterApplication.route.js';
+import userRouter from '../routes/user.route.js';
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use('/recruiter/jobs', recruiterJobRouter);
 router.use('/applications', applicationRouter);
 router.use('/jobs', jobApplicationRouter);
 router.use('/recruiter', recruiterApplicationRouter);
+router.use('/users', userRouter);
 
 export default router;
