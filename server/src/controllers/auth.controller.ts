@@ -3,6 +3,7 @@ import { loginSchema, registerSchema } from '../validators/auth.validator.js';
 import { loginUser, registerUser } from '../services/auth.service.js';
 import { APIError } from '../utils/APIError.js';
 import { APIResponse } from '../utils/APIResponse.js';
+import { AuthenticatedRequest } from '../middleware/auth.middleware.js';
 
 export const register = async (
   req: Request,
@@ -53,6 +54,25 @@ export const login = async (
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .json(new APIResponse(user.user, 'Login successful'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const logout = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    res
+      .clearCookie('accessToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+      })
+      .status(200)
+      .json(new APIResponse(null, 'Logout Successful'));
   } catch (error) {
     next(error);
   }
