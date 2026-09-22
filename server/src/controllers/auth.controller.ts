@@ -3,7 +3,6 @@ import { loginSchema, registerSchema } from '../validators/auth.validator.js';
 import { loginUser, registerUser } from '../services/auth.service.js';
 import { APIError } from '../utils/APIError.js';
 import { APIResponse } from '../utils/APIResponse.js';
-import { AuthenticatedRequest } from '../middleware/auth.middleware.js';
 
 export const register = async (
   req: Request,
@@ -60,7 +59,7 @@ export const login = async (
 };
 
 export const logout = async (
-  req: AuthenticatedRequest,
+  _req: Request,
   res: Response,
   next: NextFunction,
 ): Promise<void> => {
@@ -72,7 +71,7 @@ export const logout = async (
         sameSite: 'lax',
       })
       .status(200)
-      .json(new APIResponse(null, 'Logout Successful'));
+      .json(new APIResponse(null, 'Logout successful'));
   } catch (error) {
     next(error);
   }
