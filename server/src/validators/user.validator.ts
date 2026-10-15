@@ -22,7 +22,17 @@ export const updateProfileSchema = z
       .trim()
       .max(500, 'Bio cannot exceed 500 characters')
       .optional(),
-    skills: z.array(z.string().trim()).optional(),
+    skills: z
+      .array(z.string().trim().min(1, 'Skill cannot be empty'))
+      .refine(
+        (skills) => {
+          const normalizedSkills = skills.map((skill) => skill.toLowerCase());
+
+          return new Set(normalizedSkills).size === skills.length;
+        },
+        {message: 'Duplicate skills are not allowed'},
+      )
+      .optional(),
   })
   .refine((data) => Object.keys(data).length > 0, {
     message: 'At least one profile field is required',
