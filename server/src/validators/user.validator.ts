@@ -5,21 +5,25 @@ export const updateProfileSchema = z
     firstName: z
       .string()
       .trim()
-      .max(50, 'First name cannot exceed 50 character')
+      .min(1, 'First name cannot be empty')
+      .max(50, 'First name cannot exceed 50 characters')
       .optional(),
     lastName: z
       .string()
       .trim()
+      .min(1, 'Last name cannot be empty')
       .max(50, 'Last name cannot exceed 50 characters')
       .optional(),
     location: z
       .string()
       .trim()
+      .min(1, 'Location cannot be empty')
       .max(120, 'Location cannot exceed 120 characters')
       .optional(),
     bio: z
       .string()
       .trim()
+      .min(1, 'Bio cannot be empty')
       .max(500, 'Bio cannot exceed 500 characters')
       .optional(),
     skills: z
