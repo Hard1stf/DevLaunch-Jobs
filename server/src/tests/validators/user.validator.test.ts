@@ -156,4 +156,32 @@ describe('updateProfileSchema', () => {
       updateProfileSchema.safeParse({ bio: 'A'.repeat(501) }).success,
     ).toBe(false);
   });
+
+  it('should accept a skill containing exactly 50 characters', () => {
+    const result = updateProfileSchema.safeParse({ skills: ['A'.repeat(50)] });
+
+    expect(result.success).toBe(true);
+  });
+
+  it('should reject a skill exceeding 50 characters', () => {
+    const result = updateProfileSchema.safeParse({ skills: ['A'.repeat(51)] });
+
+    expect(result.success).toBe(false);
+  });
+
+  it('should accept exactly 15 unique skills', () => {
+    const skills = Array.from({ length: 15 }, (_, i) => `Skill${i}`);
+
+    const result = updateProfileSchema.safeParse({ skills });
+
+    expect(result.success).toBe(true);
+  });
+
+  it('should reject more than 15 skills', () => {
+    const skills = Array.from({ length: 16 }, (_, i) => `Skill${i}`);
+
+    const result = updateProfileSchema.safeParse({ skills });
+
+    expect(result.success).toBe(false);
+  });
 });

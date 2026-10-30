@@ -27,14 +27,21 @@ export const updateProfileSchema = z
       .max(500, 'Bio cannot exceed 500 characters')
       .optional(),
     skills: z
-      .array(z.string().trim().min(1, 'Skill cannot be empty'))
+      .array(
+        z
+          .string()
+          .trim()
+          .min(1, 'Skill cannot be empty')
+          .max(50, 'Skill cannot exceed 50 characters'),
+      )
+      .max(15, 'You cannot add more than 15 skills')
       .refine(
         (skills) => {
           const normalizedSkills = skills.map((skill) => skill.toLowerCase());
 
           return new Set(normalizedSkills).size === skills.length;
         },
-        {message: 'Duplicate skills are not allowed'},
+        { message: 'Duplicate skills are not allowed' },
       )
       .optional(),
   })
