@@ -184,4 +184,17 @@ describe('updateProfileSchema', () => {
 
     expect(result.success).toBe(false);
   });
+
+  it('should strip protected fields from the profile update payload', () => {
+    const result = updateProfileSchema.parse({
+      firstName: 'Hardik',
+      email: 'attacker@example.com',
+      role: 'recruiter',
+      passwordHash: 'malicious-value',
+    });
+
+    expect(result).toEqual({
+      firstName: 'Hardik',
+    });
+  });
 });
