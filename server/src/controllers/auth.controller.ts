@@ -1,8 +1,13 @@
 import type { Response, Request, NextFunction } from 'express';
 import { loginSchema, registerSchema } from '../validators/auth.validator.js';
-import { loginUser, registerUser } from '../services/auth.service.js';
+import {
+  getCurrentUserService,
+  loginUser,
+  registerUser,
+} from '../services/auth.service.js';
 import { APIError } from '../utils/APIError.js';
 import { APIResponse } from '../utils/APIResponse.js';
+import type { AuthenticatedRequest } from '../middleware/auth.middleware.js';
 
 export const register = async (
   req: Request,
@@ -72,6 +77,24 @@ export const logout = async (
       })
       .status(200)
       .json(new APIResponse(null, 'Logout successful'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getCurrentUser = async (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
+  try {
+    const userId = req.user!.userId;
+
+    const user = await getCurrentUserService(userId);
+
+    res
+      .status(200)
+      .json(new APIResponse(user, 'Current user fetched successfully'));
   } catch (error) {
     next(error);
   }
