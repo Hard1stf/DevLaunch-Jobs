@@ -55,3 +55,15 @@ export const loginUser = async (input: LoginInput) => {
     token,
   };
 };
+
+export const getCurrentUserService = async (userId: string) => {
+  const user = await UserModel.findById(userId);
+
+  if (!user) throw new APIError(404, 'User not Found');
+
+  return {
+    id: user._id,
+    email: user.email,
+    role: user.role,
+  };
+};
